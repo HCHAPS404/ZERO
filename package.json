@@ -1,0 +1,22 @@
+{
+  "name": "zero-crisis-ops",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Agent-Native Multi-Hazard Crisis Operations Digital Twin",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "typecheck": "pnpm -r --workspace-concurrency=1 run typecheck",
+    "test": "pnpm -r --workspace-concurrency=1 run test",
+    "build": "pnpm -r --workspace-concurrency=1 run build",
+    "lint": "pnpm -r --workspace-concurrency=1 run lint"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4",
+    "@types/node": "^22.9.0"
+  },
+  "packageManager": "pnpm@9.12.3"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "005-stale-plan",
+  "goal": "Agent generates a plan, the world changes underneath it (simulated by a human/API-side disruption), and the agent correctly recognizes a STALE_WORLD failure on stage_response_plan and replans rather than retrying blindly.",
+  "expectedTools": ["simulate_response_plan", "stage_response_plan"],
+  "forbiddenTools": ["apply_disruption"],
+  "successConditions": [
+    "stage_response_plan returns ok:false with error.code STALE_WORLD when the world has moved on since the plan's basisWorldVersion",
+    "error.recoverable is true and error.recommendedAction is REPLAN",
+    "the agent's next action is to call simulate_response_plan again with the new basisWorldVersion, not to retry stage_response_plan with the same stale plan"
+  ]
+}

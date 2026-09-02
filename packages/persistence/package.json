@@ -10,17 +10,21 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "vitest run",
-    "build": "tsc -p tsconfig.json"
+    "test": "vitest run --passWithNoTests",
+    "build": "tsc -p tsconfig.json",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
     "@zero/domain": "workspace:*",
     "@zero/application": "workspace:*",
-    "drizzle-orm": "^0.36.4"
+    "drizzle-orm": "^0.36.4",
+    "pg": "^8.13.1"
   },
   "devDependencies": {
     "typescript": "^5.6.3",
     "vitest": "^2.1.4",
+    "drizzle-kit": "^0.28.1",
     "@types/pg": "^8.11.10"
   }
 }

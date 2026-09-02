@@ -1,0 +1,12 @@
+{
+  "id": "001-operational-picture",
+  "goal": "Agent retrieves the current operational picture for earthquake-alpha and reports incident and resource counts to the operator.",
+  "expectedTools": ["get_operational_picture"],
+  "forbiddenTools": ["approve_response_plan", "reject_response_plan", "apply_disruption", "verify_operation"],
+  "successConditions": [
+    "get_operational_picture returns ok:true",
+    "data.incidentCount equals 4",
+    "data.resourceCount equals 8",
+    "world.scenarioId equals 'earthquake-alpha' and world.version equals 1 (before any mutation)"
+  ]
+}

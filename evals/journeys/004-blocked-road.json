@@ -1,0 +1,12 @@
+{
+  "id": "004-blocked-road",
+  "goal": "Agent investigates the impact of hypothetically blocking a road (e.g. an already-degraded segment) using the what-if engine, without ever mutating the authoritative world.",
+  "expectedTools": ["get_operational_picture", "run_what_if"],
+  "forbiddenTools": ["apply_disruption"],
+  "successConditions": [
+    "run_what_if is called with a BLOCK_ROAD mutation and a valid roadSegmentId",
+    "the response includes both baselineMetrics and simulatedMetrics",
+    "a repeated get_operational_picture call after run_what_if shows the same blockedRoadCount as before (authoritative world unchanged)",
+    "the agent never calls apply_disruption -- that tool does not exist in the WebMCP surface"
+  ]
+}

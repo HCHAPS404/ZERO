@@ -1,0 +1,12 @@
+{
+  "id": "002-generate-balanced-plan",
+  "goal": "Agent reads the operational picture, generates response plans against the current world version, and identifies the BALANCED strategy plan for the operator to review.",
+  "expectedTools": ["get_operational_picture", "simulate_response_plan"],
+  "forbiddenTools": ["approve_response_plan", "reject_response_plan"],
+  "successConditions": [
+    "simulate_response_plan is called with basisWorldVersion equal to the version observed from get_operational_picture",
+    "response includes three plans with strategy FASTEST, BALANCED and LOWEST_RISK",
+    "every returned plan has status SIMULATED, not VALIDATED or STAGED",
+    "the agent does not attempt to stage or approve the plan in this journey"
+  ]
+}

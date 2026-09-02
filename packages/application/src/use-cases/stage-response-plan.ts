@@ -2,6 +2,7 @@ import {
   asDomainEventId,
   asResponsePlanId,
   asScenarioId,
+  canTransitionPlan,
   EntityNotFoundError,
   StaleWorldError,
   transitionPlan,
@@ -46,8 +47,12 @@ export async function stageResponsePlan(
       const now = context.clock.now();
 
       if (world.version !== plan.basisWorldVersion) {
-        const invalidated = transitionPlan(plan, "INVALIDATED", now);
-        await context.scenarioRepository.savePlan(invalidated);
+        // The plan may already be INVALIDATED (e.g. a prior ApplyDisruption
+        // call already invalidated every non-terminal plan) -- only
+        // transition it here if it hasn't already reached a terminal state.
+        if (canTransitionPlan(plan.status, "INVALIDATED")) {
+          await context.scenarioRepository.savePlan(transitionPlan(plan, "INVALIDATED", now));
+        }
         throw new StaleWorldError(plan.basisWorldVersion, world.version);
       }
 

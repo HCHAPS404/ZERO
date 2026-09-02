@@ -1,0 +1,32 @@
+{
+  "name": "@zero/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --passWithNoTests",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@zero/domain": "workspace:*",
+    "@zero/application": "workspace:*",
+    "@zero/contracts": "workspace:*",
+    "@zero/persistence": "workspace:*",
+    "@zero/routing": "workspace:*",
+    "@zero/planner": "workspace:*",
+    "@zero/simulation": "workspace:*",
+    "@zero/scenario-earthquake-alpha": "workspace:*",
+    "hono": "^4.6.9",
+    "@hono/node-server": "^1.13.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4",
+    "tsx": "^4.19.2",
+    "@types/node": "^22.9.0"
+  }
+}

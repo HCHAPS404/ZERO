@@ -1,5 +1,5 @@
 {
-  "name": "@zero/routing",
+  "name": "@zero/simulation",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -15,7 +15,10 @@
   },
   "dependencies": {
     "@zero/domain": "workspace:*",
-    "@zero/application": "workspace:*"
+    "@zero/application": "workspace:*",
+    "@zero/contracts": "workspace:*",
+    "@zero/routing": "workspace:*",
+    "@zero/planner": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.6.3",

@@ -9,7 +9,13 @@ import {
   type Signal,
 } from "@zero/domain";
 import { CorrelateSignalsInputSchema, type CorrelateSignalsInput } from "@zero/contracts";
-import { runPipeline, type CallerContext, type UseCaseContext, type UseCaseResult } from "../execution/pipeline.js";
+import {
+  extractOperationId,
+  runPipeline,
+  type CallerContext,
+  type UseCaseContext,
+  type UseCaseResult,
+} from "../execution/pipeline.js";
 
 export async function correlateSignals(
   rawInput: unknown,
@@ -20,6 +26,7 @@ export async function correlateSignals(
     schema: CorrelateSignalsInputSchema,
     rawInput,
     ctx,
+    operationId: extractOperationId(rawInput),
     caller,
     handler: async (input, context) => {
       const scenarioId = asScenarioId(input.scenarioId);

@@ -12,7 +12,13 @@ import {
   type TrustLevel,
 } from "@zero/domain";
 import { ProposeOperationalFactInputSchema, type ProposeOperationalFactInput } from "@zero/contracts";
-import { runPipeline, type CallerContext, type UseCaseContext, type UseCaseResult } from "../execution/pipeline.js";
+import {
+  extractOperationId,
+  runPipeline,
+  type CallerContext,
+  type UseCaseContext,
+  type UseCaseResult,
+} from "../execution/pipeline.js";
 
 const TRUST_RANK: Record<TrustLevel, number> = {
   UNTRUSTED: 0,
@@ -37,6 +43,7 @@ export async function proposeOperationalFact(
     rawInput,
     ctx,
     caller,
+    operationId: extractOperationId(rawInput),
     handler: async (input, context) => {
       const scenarioId = asScenarioId(input.scenarioId);
       let world = await context.scenarioRepository.getWorld(scenarioId);

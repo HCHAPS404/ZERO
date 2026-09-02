@@ -40,6 +40,7 @@ export type ListSignalsInput = z.infer<typeof ListSignalsInputSchema>;
 export const CorrelateSignalsInputSchema = z.object({
   scenarioId,
   signalIds: z.array(z.string().min(1)).min(2),
+  operationId,
 });
 export type CorrelateSignalsInput = z.infer<typeof CorrelateSignalsInputSchema>;
 
@@ -48,6 +49,7 @@ export const ProposeOperationalFactInputSchema = z.object({
   claimText: z.string().min(1),
   relatedIncidentId: z.string().min(1).optional(),
   supportingSignalIds: z.array(z.string().min(1)).min(1),
+  operationId,
 });
 export type ProposeOperationalFactInput = z.infer<typeof ProposeOperationalFactInputSchema>;
 
